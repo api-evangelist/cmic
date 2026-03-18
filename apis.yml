@@ -1,0 +1,18 @@
+aid: cmic
+url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/apis.yml
+apis:
+- aid: cmic:cmic-api
+  name: CMiC Construction ERP API
+  tags:
+  - Construction
+  - ERP
+  - Project Management
+  - Finance
+  image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
+  humanURL: https://www.cmic.ca/
+  baseURL: https://api.cmic.example.com
+  properties:
+  - url: https://www.cmic.ca/
+    type: Documentation
+  description: >-
+    CMiC provides enterprise ERP and project management software for the construction industry. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management for general contractors and construction managers.
