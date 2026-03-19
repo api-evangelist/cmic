@@ -1,0 +1,620 @@
+openapi: 3.1.0
+info:
+  title: CMiC Construction ERP API
+  description: >-
+    CMiC provides enterprise ERP and project management software for the construction industry.
+    The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity
+    providers like Microsoft Azure. APIs enable access to project financials, subcontractor
+    management, job costing, equipment tracking, and document management. Application-level
+    security is enforced across all endpoints respecting company, job, project, and employee
+    access rules.
+  version: 1.0.0
+  contact:
+    name: CMiC Developer Support
+    url: https://developers.cmicglobal.com/
+  license:
+    name: CMiC Privacy Policy
+    url: https://cmicglobal.com/privacy-policy
+servers:
+  - url: https://api.cmic.ca/rest
+    description: CMiC REST API
+security:
+  - oauth2: []
+tags:
+  - name: Projects
+    description: Construction project management
+  - name: Jobs
+    description: Job and cost code tracking
+  - name: Subcontractors
+    description: Subcontractor and vendor management
+  - name: Cost Tracking
+    description: Job cost codes, budgets, and committed costs
+  - name: Documents
+    description: Document management and approvals
+  - name: Equipment
+    description: Equipment tracking and usage
+paths:
+  /pm-rest-api/v1/PMproject:
+    get:
+      operationId: listProjects
+      summary: List construction projects
+      description: >-
+        Returns a list of construction projects accessible to the authenticated user, subject to
+        company and project-level security rules.
+      tags:
+        - Projects
+      parameters:
+        - name: companyCode
+          in: query
+          description: Filter by company code
+          schema:
+            type: string
+        - name: projectStatus
+          in: query
+          description: Filter by project status
+          schema:
+            type: string
+            enum: [ACTIVE, INACTIVE, COMPLETE, BIDDING]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+            maximum: 500
+        - name: offset
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createProject
+      summary: Create a new construction project
+      description: Creates a new project record in CMiC ERP.
+      tags:
+        - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /pm-rest-api/v1/PMproject/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get project details
+      description: Returns detailed information for a single construction project.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          description: Unique project identifier
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProject
+      summary: Update project details
+      description: Updates an existing project record.
+      tags:
+        - Projects
+      parameters:
+        - name: projectId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /jc-rest-api/v1/JCjob:
+    get:
+      operationId: listJobs
+      summary: List construction jobs
+      description: >-
+        Returns all construction jobs (job cost records) accessible to the authenticated user.
+        Jobs are the primary cost tracking unit in CMiC.
+      tags:
+        - Jobs
+      parameters:
+        - name: companyCode
+          in: query
+          schema:
+            type: string
+        - name: projectId
+          in: query
+          schema:
+            type: string
+        - name: jobStatus
+          in: query
+          schema:
+            type: string
+            enum: [OPEN, CLOSED, COMPLETE]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+  /jc-rest-api/v1/JCjob/{jobId}:
+    get:
+      operationId: getJob
+      summary: Get job details
+      description: Returns detailed information for a single construction job including cost summary.
+      tags:
+        - Jobs
+      parameters:
+        - name: jobId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jc-rest-api/v1/JCcostCode:
+    get:
+      operationId: listCostCodes
+      summary: List cost codes
+      description: Returns cost codes for jobs, enabling detailed cost tracking by category.
+      tags:
+        - Cost Tracking
+      parameters:
+        - name: jobId
+          in: query
+          description: Filter cost codes for a specific job
+          schema:
+            type: string
+        - name: costType
+          in: query
+          description: Filter by cost type
+          schema:
+            type: string
+            enum: [LABOR, MATERIAL, EQUIPMENT, SUBCONTRACT, OVERHEAD]
+      responses:
+        '200':
+          description: List of cost codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostCodeList'
+  /ap-rest-api/v1/APvendor:
+    get:
+      operationId: listVendors
+      summary: List vendors and subcontractors
+      description: Returns all vendors and subcontractors in the CMiC system.
+      tags:
+        - Subcontractors
+      parameters:
+        - name: vendorType
+          in: query
+          schema:
+            type: string
+            enum: [SUBCONTRACTOR, SUPPLIER, PROFESSIONAL]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of vendors
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VendorList'
+  /ap-rest-api/v1/APvendor/{vendorId}:
+    get:
+      operationId: getVendor
+      summary: Get vendor details
+      description: Returns detailed information for a vendor or subcontractor.
+      tags:
+        - Subcontractors
+      parameters:
+        - name: vendorId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Vendor details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Vendor'
+  /dm-rest-api/v1/DMdocument:
+    get:
+      operationId: listDocuments
+      summary: List project documents
+      description: Returns project documents including RFIs, submittals, change orders, and drawings.
+      tags:
+        - Documents
+      parameters:
+        - name: projectId
+          in: query
+          schema:
+            type: string
+        - name: documentType
+          in: query
+          schema:
+            type: string
+            enum: [RFI, SUBMITTAL, CHANGE_ORDER, DRAWING, SPECIFICATION, CONTRACT]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+  /eq-rest-api/v1/EQequipment:
+    get:
+      operationId: listEquipment
+      summary: List equipment
+      description: Returns all equipment records tracked in the CMiC system.
+      tags:
+        - Equipment
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [ACTIVE, INACTIVE, MAINTENANCE, RETIRED]
+        - name: limit
+          in: query
+          schema:
+            type: integer
+            default: 100
+      responses:
+        '200':
+          description: List of equipment
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EquipmentList'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials for CMiC API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://cmic/.default: Full CMiC API access
+  schemas:
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectSummary'
+        total:
+          type: integer
+        offset:
+          type: integer
+    ProjectSummary:
+      type: object
+      properties:
+        projectId:
+          type: string
+        projectName:
+          type: string
+        companyCode:
+          type: string
+        status:
+          type: string
+        contractAmount:
+          type: number
+          format: double
+    Project:
+      allOf:
+        - $ref: '#/components/schemas/ProjectSummary'
+        - type: object
+          properties:
+            description:
+              type: string
+            projectManager:
+              type: string
+            owner:
+              type: string
+            startDate:
+              type: string
+              format: date
+            endDate:
+              type: string
+              format: date
+            address:
+              $ref: '#/components/schemas/Address'
+            originalBudget:
+              type: number
+              format: double
+            revisedBudget:
+              type: number
+              format: double
+            committedCosts:
+              type: number
+              format: double
+    ProjectRequest:
+      type: object
+      required: [projectName, companyCode]
+      properties:
+        projectName:
+          type: string
+        companyCode:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        contractAmount:
+          type: number
+          format: double
+    JobList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobSummary'
+        total:
+          type: integer
+    JobSummary:
+      type: object
+      properties:
+        jobId:
+          type: string
+        jobName:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+        originalBudget:
+          type: number
+          format: double
+    Job:
+      allOf:
+        - $ref: '#/components/schemas/JobSummary'
+        - type: object
+          properties:
+            revisedBudget:
+              type: number
+            actualCost:
+              type: number
+            committedCost:
+              type: number
+            costToComplete:
+              type: number
+    CostCodeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostCode'
+    CostCode:
+      type: object
+      properties:
+        costCodeId:
+          type: string
+        description:
+          type: string
+        jobId:
+          type: string
+        costType:
+          type: string
+          enum: [LABOR, MATERIAL, EQUIPMENT, SUBCONTRACT, OVERHEAD]
+        budget:
+          type: number
+        actual:
+          type: number
+        committed:
+          type: number
+        variance:
+          type: number
+    VendorList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorSummary'
+        total:
+          type: integer
+    VendorSummary:
+      type: object
+      properties:
+        vendorId:
+          type: string
+        vendorName:
+          type: string
+        vendorType:
+          type: string
+        status:
+          type: string
+    Vendor:
+      allOf:
+        - $ref: '#/components/schemas/VendorSummary'
+        - type: object
+          properties:
+            address:
+              $ref: '#/components/schemas/Address'
+            phone:
+              type: string
+            email:
+              type: string
+            taxId:
+              type: string
+            insurance:
+              type: object
+              properties:
+                expiryDate:
+                  type: string
+                  format: date
+                coverageAmount:
+                  type: number
+    DocumentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        total:
+          type: integer
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+        documentType:
+          type: string
+        subject:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+        createdDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+    EquipmentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Equipment'
+        total:
+          type: integer
+    Equipment:
+      type: object
+      properties:
+        equipmentId:
+          type: string
+        description:
+          type: string
+        equipmentType:
+          type: string
+        status:
+          type: string
+        year:
+          type: integer
+        make:
+          type: string
+        model:
+          type: string
+        assignedJobId:
+          type: string
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.cmic.ca/rest/schemas/project",
+  "title": "CMiC Construction Project",
+  "description": "Schema representing a construction project in the CMiC ERP system.",
+  "type": "object",
+  "required": ["projectId", "projectName", "companyCode"],
+  "properties": {
+    "projectId": {
+      "type": "string",
+      "description": "Unique project identifier in CMiC"
+    },
+    "projectName": {
+      "type": "string",
+      "description": "Project name",
+      "maxLength": 255
+    },
+    "companyCode": {
+      "type": "string",
+      "description": "CMiC company code for multi-company setups"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "status": {
+      "type": "string",
+      "description": "Project status",
+      "enum": ["ACTIVE", "INACTIVE", "COMPLETE", "BIDDING", "ON_HOLD"]
+    },
+    "projectManager": {
+      "type": "string",
+      "description": "Project manager name or employee ID"
+    },
+    "owner": {
+      "type": "string",
+      "description": "Project owner organization name"
+    },
+    "startDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Project start date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Project completion date"
+    },
+    "address": {
+      "$ref": "#/$defs/Address",
+      "description": "Project site address"
+    },
+    "financials": {
+      "$ref": "#/$defs/ProjectFinancials",
+      "description": "Project financial summary"
+    },
+    "jobs": {
+      "type": "array",
+      "description": "List of job IDs associated with this project",
+      "items": {
+        "type": "string"
+      }
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updatedAt": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "properties": {
+        "street": { "type": "string" },
+        "city": { "type": "string" },
+        "state": { "type": "string", "pattern": "^[A-Z]{2}$" },
+        "postalCode": { "type": "string" },
+        "country": { "type": "string", "default": "US" }
+      }
+    },
+    "ProjectFinancials": {
+      "type": "object",
+      "properties": {
+        "contractAmount": {
+          "type": "number",
+          "format": "double",
+          "description": "Original contract amount in USD",
+          "minimum": 0
+        },
+        "originalBudget": {
+          "type": "number",
+          "format": "double",
+          "description": "Original approved budget",
+          "minimum": 0
+        },
+        "revisedBudget": {
+          "type": "number",
+          "format": "double",
+          "description": "Current revised budget including change orders",
+          "minimum": 0
+        },
+        "actualCost": {
+          "type": "number",
+          "format": "double",
+          "description": "Total actual cost incurred to date",
+          "minimum": 0
+        },
+        "committedCost": {
+          "type": "number",
+          "format": "double",
+          "description": "Total committed costs (POs, subcontracts)",
+          "minimum": 0
+        },
+        "costToComplete": {
+          "type": "number",
+          "format": "double",
+          "description": "Estimated cost to complete the project"
+        },
+        "variance": {
+          "type": "number",
+          "format": "double",
+          "description": "Budget variance (positive = under budget)"
+        },
+        "percentComplete": {
+          "type": "number",
+          "format": "double",
+          "description": "Project completion percentage",
+          "minimum": 0,
+          "maximum": 100
+        }
+      }
+    }
+  }
+}
