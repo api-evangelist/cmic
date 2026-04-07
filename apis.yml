@@ -1,17 +1,15 @@
 aid: cmic
-url: 
-  https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/apis.yml
 apis:
   - aid: cmic:cmic-api
     name: CMiC Construction ERP API
     tags:
       - Construction
       - ERP
-      - Project Management
       - Finance
       - OAuth2
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
+      - Project Management
+    image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
     humanURL: https://developers.cmicglobal.com/
     baseURL: https://api.cmic.ca
     properties:
@@ -21,11 +19,9 @@ apis:
         type: Authentication
       - url: https://developers.cmicglobal.com/docs/developer-api-account
         type: GettingStarted
-      - url: 
-          https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+      - url: https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
         type: Reference
-      - url: 
-          https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/openapi/cmic-construction-erp-openapi.yml
+      - url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/openapi/cmic-construction-erp-openapi.yml
         type: OpenAPI
     description: >-
       CMiC provides enterprise ERP and project management software for the construction
@@ -37,13 +33,12 @@ apis:
   - aid: cmic:cmic-power-bi-connector
     name: CMiC API Power BI Connector
     tags:
+      - Analytics
+      - Business Intelligence
       - Construction
       - ERP
-      - Analytics
       - Power BI
-      - Business Intelligence
-    image: 
-      https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
+    image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
     humanURL: https://docs.cmicglobal.com/portal/Content/Home.htm
     baseURL: https://api.cmic.ca
     properties:
@@ -57,14 +52,11 @@ apis:
 common:
   - url: https://cmicglobal.com/
     type: Website
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/openapi/cmic-construction-erp-openapi.yml
+  - url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/openapi/cmic-construction-erp-openapi.yml
     type: OpenAPI
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/json-schema/cmic-project-schema.json
+  - url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/json-schema/cmic-project-schema.json
     type: JSONSchema
-  - url: 
-      https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/json-ld/cmic-context.jsonld
+  - url: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/json-ld/cmic-context.jsonld
     type: JSONLDContext
   - url: https://developers.cmicglobal.com/
     type: Portal

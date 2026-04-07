@@ -21,18 +21,18 @@ servers:
 security:
   - oauth2: []
 tags:
-  - name: Projects
-    description: Construction project management
-  - name: Jobs
-    description: Job and cost code tracking
-  - name: Subcontractors
-    description: Subcontractor and vendor management
   - name: Cost Tracking
     description: Job cost codes, budgets, and committed costs
   - name: Documents
     description: Document management and approvals
   - name: Equipment
     description: Equipment tracking and usage
+  - name: Jobs
+    description: Job and cost code tracking
+  - name: Projects
+    description: Construction project management
+  - name: Subcontractors
+    description: Subcontractor and vendor management
 paths:
   /pm-rest-api/v1/PMproject:
     get:
