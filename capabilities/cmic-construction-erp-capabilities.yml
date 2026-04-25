@@ -1,0 +1,124 @@
+# Naftiko capabilities profile for CMiC Construction ERP.
+# Capabilities cover the highest-leverage construction project, financial,
+# and asset-management operations exposed through the CMiC REST API.
+provider: cmic
+name: CMiC
+description: >-
+  CMiC enterprise ERP for construction: project management, job cost
+  tracking, subcontractor and vendor management, equipment tracking, and
+  document management exposed through OAuth 2.0 secured REST APIs.
+capabilities:
+  - id: cmic.projects.list
+    name: List projects
+    description: List construction projects accessible to the authenticated user.
+    api: cmic:cmic-api
+    inputs:
+      - companyCode
+      - projectStatus
+      - limit
+      - offset
+    outputs:
+      - projects
+      - totalCount
+
+  - id: cmic.projects.create
+    name: Create project
+    description: Create a new construction project record in CMiC ERP.
+    api: cmic:cmic-api
+    inputs:
+      - companyCode
+      - projectName
+      - projectStatus
+      - startDate
+      - endDate
+    outputs:
+      - projectId
+      - status
+
+  - id: cmic.projects.get
+    name: Get project
+    description: Retrieve full details for a single construction project.
+    api: cmic:cmic-api
+    inputs:
+      - projectId
+    outputs:
+      - project
+
+  - id: cmic.projects.update
+    name: Update project
+    description: Update fields on an existing construction project record.
+    api: cmic:cmic-api
+    inputs:
+      - projectId
+      - projectStatus
+      - endDate
+    outputs:
+      - project
+
+  - id: cmic.jobs.list
+    name: List jobs
+    description: List construction jobs scoped to a company or project.
+    api: cmic:cmic-api
+    inputs:
+      - projectId
+      - jobStatus
+    outputs:
+      - jobs
+
+  - id: cmic.jobs.get
+    name: Get job
+    description: Retrieve details for a single construction job.
+    api: cmic:cmic-api
+    inputs:
+      - jobId
+    outputs:
+      - job
+
+  - id: cmic.cost-codes.list
+    name: List cost codes
+    description: Enumerate cost codes for a job or company for cost tracking.
+    api: cmic:cmic-api
+    inputs:
+      - jobId
+      - companyCode
+    outputs:
+      - costCodes
+
+  - id: cmic.vendors.list
+    name: List vendors
+    description: List vendors and subcontractors registered in CMiC.
+    api: cmic:cmic-api
+    inputs:
+      - companyCode
+      - vendorStatus
+    outputs:
+      - vendors
+
+  - id: cmic.vendors.get
+    name: Get vendor
+    description: Retrieve detail for a single vendor or subcontractor.
+    api: cmic:cmic-api
+    inputs:
+      - vendorId
+    outputs:
+      - vendor
+
+  - id: cmic.documents.list
+    name: List project documents
+    description: List documents attached to a project for review or download.
+    api: cmic:cmic-api
+    inputs:
+      - projectId
+      - documentType
+    outputs:
+      - documents
+
+  - id: cmic.equipment.list
+    name: List equipment
+    description: Enumerate equipment records tracked in CMiC for usage and assignment.
+    api: cmic:cmic-api
+    inputs:
+      - companyCode
+      - equipmentStatus
+    outputs:
+      - equipment

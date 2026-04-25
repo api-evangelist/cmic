@@ -1,0 +1,98 @@
+extends:
+  - spectral:oas
+
+# Spectral linting rules for CMiC Construction ERP API.
+# Tuned to api.cmic.ca conventions: HTTPS-only, OAuth 2.0 client credentials,
+# /pm-rest-api/v1 base path, paginated list operations, and tag-grouped
+# resources for projects, jobs, vendors, equipment, and documents.
+rules:
+  cmic-info-contact:
+    description: API contact information must be present.
+    severity: error
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  cmic-server-https:
+    description: All server URLs must use HTTPS.
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  cmic-server-host:
+    description: Production server should target api.cmic.ca.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.cmic\\.ca"
+
+  cmic-oauth-security:
+    description: An OAuth 2.0 security scheme must be defined.
+    severity: error
+    given: "$.components.securitySchemes[*]"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          properties:
+            type:
+              enum: ["oauth2", "openIdConnect"]
+
+  cmic-operation-id:
+    description: Every operation must declare a unique operationId.
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  cmic-operation-tags:
+    description: Operations must declare at least one tag.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  cmic-list-pagination:
+    description: List GET operations should accept limit and offset parameters.
+    severity: warn
+    given: "$.paths[*].get[?(@.operationId && @.operationId.match(/^list/))]"
+    then:
+      field: parameters
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 1
+
+  cmic-error-responses:
+    description: Operations must declare 401 and 403 responses.
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required: ["401"]
+
+  cmic-rest-base-path:
+    description: Server URLs should include the /rest base path.
+    severity: warn
+    given: "$.servers[?(@.url && @.url.indexOf('api.cmic.ca') > -1)].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/rest"
