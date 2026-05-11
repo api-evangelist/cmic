@@ -138,6 +138,19 @@ common:
     type: PrivacyPolicy
   - url: https://cmicglobal.com/resources/
     type: Blog
+integrations:
+  - name: Construction-ERP
+  - name: Project Management
+  - name: Accounting
+  - name: Case Studies
+  - name: CMUG
+  - name: Integration with E-Signatures
+  - name: A Revolutionary Approach to Construction Interoperability
+  - name: Female executive sitting at a laptop
+  - name: Follow us on Facebook
+  - name: Follow us on X
+  - name: Follow us on Instagram
+  - name: Follow us on LinkedIn
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
