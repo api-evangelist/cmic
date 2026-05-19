@@ -1,0 +1,134 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CMiC Construction ERP API — Jobs
+  description: 'CMiC Construction ERP API — Jobs. 2 operations. Lead operation: List construction jobs. Self-contained Naftiko
+    capability covering one Cmic business surface.'
+  tags:
+  - Cmic
+  - Jobs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CMIC_API_KEY: CMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: construction-erp-jobs
+    baseUri: https://api.cmic.ca/rest
+    description: CMiC Construction ERP API — Jobs business capability. Self-contained, no shared references.
+    resources:
+    - name: jc-rest-api-v1-JCjob
+      path: /jc-rest-api/v1/JCjob
+      operations:
+      - name: listjobs
+        method: GET
+        description: List construction jobs
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: query
+          type: string
+        - name: projectId
+          in: query
+          type: string
+        - name: jobStatus
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    - name: jc-rest-api-v1-JCjob-jobId
+      path: /jc-rest-api/v1/JCjob/{jobId}
+      operations:
+      - name: getjob
+        method: GET
+        description: Get job details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.CMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: construction-erp-jobs-rest
+    port: 8080
+    description: REST adapter for CMiC Construction ERP API — Jobs. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/jc-rest-api/v1/jcjob
+      name: jc-rest-api-v1-jcjob
+      description: REST surface for jc-rest-api-v1-JCjob.
+      operations:
+      - method: GET
+        name: listjobs
+        description: List construction jobs
+        call: construction-erp-jobs.listjobs
+        with:
+          companyCode: rest.companyCode
+          projectId: rest.projectId
+          jobStatus: rest.jobStatus
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jc-rest-api/v1/jcjob/{jobid}
+      name: jc-rest-api-v1-jcjob-jobid
+      description: REST surface for jc-rest-api-v1-JCjob-jobId.
+      operations:
+      - method: GET
+        name: getjob
+        description: Get job details
+        call: construction-erp-jobs.getjob
+        with:
+          jobId: rest.jobId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: construction-erp-jobs-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CMiC Construction ERP API — Jobs. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-construction-jobs
+      description: List construction jobs
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: construction-erp-jobs.listjobs
+      with:
+        companyCode: tools.companyCode
+        projectId: tools.projectId
+        jobStatus: tools.jobStatus
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-job-details
+      description: Get job details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: construction-erp-jobs.getjob
+      with:
+        jobId: tools.jobId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CMiC Construction ERP API — Equipment
+  description: 'CMiC Construction ERP API — Equipment. 1 operations. Lead operation: List equipment. Self-contained Naftiko
+    capability covering one Cmic business surface.'
+  tags:
+  - Cmic
+  - Equipment
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CMIC_API_KEY: CMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: construction-erp-equipment
+    baseUri: https://api.cmic.ca/rest
+    description: CMiC Construction ERP API — Equipment business capability. Self-contained, no shared references.
+    resources:
+    - name: eq-rest-api-v1-EQequipment
+      path: /eq-rest-api/v1/EQequipment
+      operations:
+      - name: listequipment
+        method: GET
+        description: List equipment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.CMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: construction-erp-equipment-rest
+    port: 8080
+    description: REST adapter for CMiC Construction ERP API — Equipment. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/eq-rest-api/v1/eqequipment
+      name: eq-rest-api-v1-eqequipment
+      description: REST surface for eq-rest-api-v1-EQequipment.
+      operations:
+      - method: GET
+        name: listequipment
+        description: List equipment
+        call: construction-erp-equipment.listequipment
+        with:
+          status: rest.status
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: construction-erp-equipment-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CMiC Construction ERP API — Equipment. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-equipment
+      description: List equipment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: construction-erp-equipment.listequipment
+      with:
+        status: tools.status
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

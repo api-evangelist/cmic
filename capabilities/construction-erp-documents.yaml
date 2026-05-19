@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CMiC Construction ERP API — Documents
+  description: 'CMiC Construction ERP API — Documents. 1 operations. Lead operation: List project documents. Self-contained
+    Naftiko capability covering one Cmic business surface.'
+  tags:
+  - Cmic
+  - Documents
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CMIC_API_KEY: CMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: construction-erp-documents
+    baseUri: https://api.cmic.ca/rest
+    description: CMiC Construction ERP API — Documents business capability. Self-contained, no shared references.
+    resources:
+    - name: dm-rest-api-v1-DMdocument
+      path: /dm-rest-api/v1/DMdocument
+      operations:
+      - name: listdocuments
+        method: GET
+        description: List project documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectId
+          in: query
+          type: string
+        - name: documentType
+          in: query
+          type: string
+        - name: limit
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.CMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: construction-erp-documents-rest
+    port: 8080
+    description: REST adapter for CMiC Construction ERP API — Documents. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/dm-rest-api/v1/dmdocument
+      name: dm-rest-api-v1-dmdocument
+      description: REST surface for dm-rest-api-v1-DMdocument.
+      operations:
+      - method: GET
+        name: listdocuments
+        description: List project documents
+        call: construction-erp-documents.listdocuments
+        with:
+          projectId: rest.projectId
+          documentType: rest.documentType
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: construction-erp-documents-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CMiC Construction ERP API — Documents. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: list-project-documents
+      description: List project documents
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: construction-erp-documents.listdocuments
+      with:
+        projectId: tools.projectId
+        documentType: tools.documentType
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

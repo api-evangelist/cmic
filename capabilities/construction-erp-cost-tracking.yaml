@@ -1,0 +1,85 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: CMiC Construction ERP API — Cost Tracking
+  description: 'CMiC Construction ERP API — Cost Tracking. 1 operations. Lead operation: List cost codes. Self-contained Naftiko
+    capability covering one Cmic business surface.'
+  tags:
+  - Cmic
+  - Cost Tracking
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    CMIC_API_KEY: CMIC_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: construction-erp-cost-tracking
+    baseUri: https://api.cmic.ca/rest
+    description: CMiC Construction ERP API — Cost Tracking business capability. Self-contained, no shared references.
+    resources:
+    - name: jc-rest-api-v1-JCcostCode
+      path: /jc-rest-api/v1/JCcostCode
+      operations:
+      - name: listcostcodes
+        method: GET
+        description: List cost codes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: jobId
+          in: query
+          type: string
+          description: Filter cost codes for a specific job
+        - name: costType
+          in: query
+          type: string
+          description: Filter by cost type
+    authentication:
+      type: bearer
+      token: '{{env.CMIC_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: construction-erp-cost-tracking-rest
+    port: 8080
+    description: REST adapter for CMiC Construction ERP API — Cost Tracking. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/jc-rest-api/v1/jccostcode
+      name: jc-rest-api-v1-jccostcode
+      description: REST surface for jc-rest-api-v1-JCcostCode.
+      operations:
+      - method: GET
+        name: listcostcodes
+        description: List cost codes
+        call: construction-erp-cost-tracking.listcostcodes
+        with:
+          jobId: rest.jobId
+          costType: rest.costType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: construction-erp-cost-tracking-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for CMiC Construction ERP API — Cost Tracking. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: list-cost-codes
+      description: List cost codes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: construction-erp-cost-tracking.listcostcodes
+      with:
+        jobId: tools.jobId
+        costType: tools.costType
+      outputParameters:
+      - type: object
+        mapping: $.
