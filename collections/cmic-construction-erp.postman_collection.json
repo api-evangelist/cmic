@@ -1,0 +1,1574 @@
+{
+  "item": [
+    {
+      "id": "8116f19d-a0c8-4eea-aa46-d7d77a315ea6",
+      "name": "Cost Tracking",
+      "description": {
+        "content": "Job cost codes, budgets, and committed costs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45cba9c4-d475-4dca-8e49-c95d3f96f5d7",
+          "name": "List cost codes",
+          "request": {
+            "name": "List cost codes",
+            "description": {
+              "content": "Returns cost codes for jobs, enabling detailed cost tracking by category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jc-rest-api",
+                "v1",
+                "JCcostCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "jobId",
+                  "value": "<string>",
+                  "description": "Filter cost codes for a specific job"
+                },
+                {
+                  "disabled": false,
+                  "key": "costType",
+                  "value": "<string>",
+                  "description": "Filter by cost type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c3fcff2-1956-4a87-8eac-c5b3fb7cb138",
+              "name": "List of cost codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jc-rest-api",
+                    "v1",
+                    "JCcostCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "jobId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"costCodeId\": \"string\",\n      \"description\": \"string\",\n      \"jobId\": \"string\",\n      \"costType\": \"EQUIPMENT\",\n      \"budget\": 2651.4488679787682,\n      \"actual\": 4855.484539881582,\n      \"committed\": 6081.912787502571,\n      \"variance\": 4532.627167193739\n    },\n    {\n      \"costCodeId\": \"string\",\n      \"description\": \"string\",\n      \"jobId\": \"string\",\n      \"costType\": \"OVERHEAD\",\n      \"budget\": 9773.395483067543,\n      \"actual\": 9788.299497720962,\n      \"committed\": 5211.908714754926,\n      \"variance\": 7550.252262331757\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "60a48a69-2097-4ceb-80a3-2b65ff9fde95",
+      "name": "Documents",
+      "description": {
+        "content": "Document management and approvals",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "697db9dc-e3fe-4f46-aa01-4abc5445c932",
+          "name": "List project documents",
+          "request": {
+            "name": "List project documents",
+            "description": {
+              "content": "Returns project documents including RFIs, submittals, change orders, and drawings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dm-rest-api",
+                "v1",
+                "DMdocument"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa13ff3f-26bf-485c-b3b0-09cbcffc8cd2",
+              "name": "List of documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dm-rest-api",
+                    "v1",
+                    "DMdocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"documentId\": \"string\",\n      \"documentType\": \"string\",\n      \"subject\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"1956-04-21\",\n      \"dueDate\": \"1960-02-29\"\n    },\n    {\n      \"documentId\": \"string\",\n      \"documentType\": \"string\",\n      \"subject\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"1999-03-09\",\n      \"dueDate\": \"1952-05-16\"\n    }\n  ],\n  \"total\": 1609\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "2f3a275b-853e-4946-ad5c-36b46f166c9b",
+      "name": "Equipment",
+      "description": {
+        "content": "Equipment tracking and usage",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "825ae89f-43de-4604-a14a-7eef6159b870",
+          "name": "List equipment",
+          "request": {
+            "name": "List equipment",
+            "description": {
+              "content": "Returns all equipment records tracked in the CMiC system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eq-rest-api",
+                "v1",
+                "EQequipment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0227853-3089-4157-bba4-57c0ede1d684",
+              "name": "List of equipment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eq-rest-api",
+                    "v1",
+                    "EQequipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 6868,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    },\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 3381,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    }\n  ],\n  \"total\": 1646\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "944cdf7d-1de6-424a-8cdf-6de5c9f884e2",
+      "name": "Jobs",
+      "description": {
+        "content": "Job and cost code tracking",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a122a91-6b91-4d8c-96da-a4d39e1c046e",
+          "name": "List construction jobs",
+          "request": {
+            "name": "List construction jobs",
+            "description": {
+              "content": "Returns all construction jobs (job cost records) accessible to the authenticated user. Jobs are the primary cost tracking unit in CMiC.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jc-rest-api",
+                "v1",
+                "JCjob"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyCode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "jobStatus",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "30c51d14-0b83-4cac-ad6d-13cd044dac3b",
+              "name": "List of jobs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jc-rest-api",
+                    "v1",
+                    "JCjob"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "jobStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"jobId\": \"string\",\n      \"jobName\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"originalBudget\": 4490.791799931079\n    },\n    {\n      \"jobId\": \"string\",\n      \"jobName\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"originalBudget\": 2281.885890259908\n    }\n  ],\n  \"total\": 1084\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2d1f593c-2699-42ef-93a4-3a3998501d3c",
+          "name": "Get job details",
+          "request": {
+            "name": "Get job details",
+            "description": {
+              "content": "Returns detailed information for a single construction job including cost summary.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jc-rest-api",
+                "v1",
+                "JCjob",
+                ":jobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7aa81ab0-4152-46d9-afc3-0948733b3875",
+              "name": "Job details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jc-rest-api",
+                    "v1",
+                    "JCjob",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jobId\": \"string\",\n  \"jobName\": \"string\",\n  \"projectId\": \"string\",\n  \"status\": \"string\",\n  \"originalBudget\": 3828.858483485008,\n  \"revisedBudget\": 4205.330643107714,\n  \"actualCost\": 5775.720423195935,\n  \"committedCost\": 4994.206795503663,\n  \"costToComplete\": 1732.4339800445664\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9096f4a-3a03-400b-b6ad-2e03f536d9cf",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jc-rest-api",
+                    "v1",
+                    "JCjob",
+                    ":jobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4c6319f2-1ef8-42f1-8021-16086bed8da6",
+      "name": "Projects",
+      "description": {
+        "content": "Construction project management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "baa8b235-5c23-408e-9224-8bec2b2df152",
+          "name": "List construction projects",
+          "request": {
+            "name": "List construction projects",
+            "description": {
+              "content": "Returns a list of construction projects accessible to the authenticated user, subject to company and project-level security rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pm-rest-api",
+                "v1",
+                "PMproject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "companyCode",
+                  "value": "<string>",
+                  "description": "Filter by company code"
+                },
+                {
+                  "disabled": false,
+                  "key": "projectStatus",
+                  "value": "<string>",
+                  "description": "Filter by project status"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1d072e2-f460-4873-af1f-c4f0a85f6348",
+              "name": "List of projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"projectId\": \"string\",\n      \"projectName\": \"string\",\n      \"companyCode\": \"string\",\n      \"status\": \"string\",\n      \"contractAmount\": 4109.435858816317\n    },\n    {\n      \"projectId\": \"string\",\n      \"projectName\": \"string\",\n      \"companyCode\": \"string\",\n      \"status\": \"string\",\n      \"contractAmount\": 1614.603563857987\n    }\n  ],\n  \"total\": 6794,\n  \"offset\": 5998\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ded0d8a3-7a92-4562-8a7b-5415d9f019b4",
+              "name": "Authentication required",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a21efb2-552b-4855-a897-442b61f535aa",
+              "name": "Insufficient permissions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "companyCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "projectStatus",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fb2363ed-7e9c-4959-ad85-fe8ea3c720b0",
+          "name": "Create a new construction project",
+          "request": {
+            "name": "Create a new construction project",
+            "description": {
+              "content": "Creates a new project record in CMiC ERP.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pm-rest-api",
+                "v1",
+                "PMproject"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"contractAmount\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dde01465-06e4-4079-82a2-0b295643c7ad",
+              "name": "Project created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"contractAmount\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": \"string\",\n  \"projectName\": \"string\",\n  \"companyCode\": \"string\",\n  \"status\": \"string\",\n  \"contractAmount\": 6029.401538764124,\n  \"description\": \"string\",\n  \"projectManager\": \"string\",\n  \"owner\": \"string\",\n  \"startDate\": \"1987-03-14\",\n  \"endDate\": \"1985-12-13\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"originalBudget\": 8962.855470637684,\n  \"revisedBudget\": 953.8693705613632,\n  \"committedCosts\": 9451.105918212508\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1b00c42-7770-4490-8204-3736fc28d48b",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"contractAmount\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9ef79f15-7132-467e-98f7-bd5bf65ca4da",
+          "name": "Get project details",
+          "request": {
+            "name": "Get project details",
+            "description": {
+              "content": "Returns detailed information for a single construction project.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pm-rest-api",
+                "v1",
+                "PMproject",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique project identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "24b3d449-85cd-4f71-9b94-dd5ffc0bf91e",
+              "name": "Project details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique project identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": \"string\",\n  \"projectName\": \"string\",\n  \"companyCode\": \"string\",\n  \"status\": \"string\",\n  \"contractAmount\": 6029.401538764124,\n  \"description\": \"string\",\n  \"projectManager\": \"string\",\n  \"owner\": \"string\",\n  \"startDate\": \"1987-03-14\",\n  \"endDate\": \"1985-12-13\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"originalBudget\": 8962.855470637684,\n  \"revisedBudget\": 953.8693705613632,\n  \"committedCosts\": 9451.105918212508\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf7bfaa5-cef0-4939-833f-12080f36653a",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique project identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": \"string\",\n  \"message\": \"string\",\n  \"details\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86b6119e-1ca6-4c12-8c54-a1706121fc4e",
+          "name": "Update project details",
+          "request": {
+            "name": "Update project details",
+            "description": {
+              "content": "Updates an existing project record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "pm-rest-api",
+                "v1",
+                "PMproject",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"contractAmount\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a8ec842c-8f78-4c59-9bbc-e80aac951d69",
+              "name": "Project updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "pm-rest-api",
+                    "v1",
+                    "PMproject",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"startDate\": \"<date>\",\n  \"endDate\": \"<date>\",\n  \"contractAmount\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projectId\": \"string\",\n  \"projectName\": \"string\",\n  \"companyCode\": \"string\",\n  \"status\": \"string\",\n  \"contractAmount\": 6029.401538764124,\n  \"description\": \"string\",\n  \"projectManager\": \"string\",\n  \"owner\": \"string\",\n  \"startDate\": \"1987-03-14\",\n  \"endDate\": \"1985-12-13\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"originalBudget\": 8962.855470637684,\n  \"revisedBudget\": 953.8693705613632,\n  \"committedCosts\": 9451.105918212508\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "65244de8-0da8-4fc8-b3c9-38a4a3b82e4e",
+      "name": "Subcontractors",
+      "description": {
+        "content": "Subcontractor and vendor management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c5d9ddc3-0a93-410f-9ed8-ca4aff91ffa3",
+          "name": "List vendors and subcontractors",
+          "request": {
+            "name": "List vendors and subcontractors",
+            "description": {
+              "content": "Returns all vendors and subcontractors in the CMiC system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ap-rest-api",
+                "v1",
+                "APvendor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d83bdb16-e976-416a-8c8f-c663249f99f4",
+              "name": "List of vendors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ap-rest-api",
+                    "v1",
+                    "APvendor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"total\": 4355\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03b88f09-fc5a-4bf6-88ac-641a55ccb9c8",
+          "name": "Get vendor details",
+          "request": {
+            "name": "Get vendor details",
+            "description": {
+              "content": "Returns detailed information for a vendor or subcontractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ap-rest-api",
+                "v1",
+                "APvendor",
+                ":vendorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vendorId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "22bccec0-e642-462c-963b-663c1f8fd9bf",
+              "name": "Vendor details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ap-rest-api",
+                    "v1",
+                    "APvendor",
+                    ":vendorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vendorId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": \"string\",\n  \"vendorName\": \"string\",\n  \"vendorType\": \"string\",\n  \"status\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"taxId\": \"string\",\n  \"insurance\": {\n    \"expiryDate\": \"1962-04-29\",\n    \"coverageAmount\": 119.66519693822231\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cmic.ca/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api://cmic/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7d954036-dc0f-47f1-b937-d7e3b303f061",
+    "name": "CMiC Construction ERP API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

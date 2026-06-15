@@ -1,0 +1,328 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CMiC Construction ERP API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List construction projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company code"
+              },
+              {
+                "name": "projectStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of construction projects accessible to the authenticated user, subject to company and project-level security rules."
+        },
+        {
+          "info": {
+            "name": "Create a new construction project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new project record in CMiC ERP."
+        },
+        {
+          "info": {
+            "name": "Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique project identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single construction project."
+        },
+        {
+          "info": {
+            "name": "Update project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing project record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List construction jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/jc-rest-api/v1/JCjob",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "jobStatus",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all construction jobs (job cost records) accessible to the authenticated user. Jobs are the primary cost tracking unit in CMiC."
+        },
+        {
+          "info": {
+            "name": "Get job details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/jc-rest-api/v1/JCjob/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single construction job including cost summary."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Cost Tracking",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List cost codes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/jc-rest-api/v1/JCcostCode",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "query",
+                "description": "Filter cost codes for a specific job"
+              },
+              {
+                "name": "costType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by cost type"
+              }
+            ]
+          },
+          "docs": "Returns cost codes for jobs, enabling detailed cost tracking by category."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Subcontractors",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List vendors and subcontractors",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/ap-rest-api/v1/APvendor",
+            "params": [
+              {
+                "name": "vendorType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all vendors and subcontractors in the CMiC system."
+        },
+        {
+          "info": {
+            "name": "Get vendor details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/ap-rest-api/v1/APvendor/:vendorId",
+            "params": [
+              {
+                "name": "vendorId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a vendor or subcontractor."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List project documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/dm-rest-api/v1/DMdocument",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns project documents including RFIs, submittals, change orders, and drawings."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Equipment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List equipment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/eq-rest-api/v1/EQequipment",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all equipment records tracked in the CMiC system."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
