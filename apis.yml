@@ -105,6 +105,10 @@ apis:
       - name: Job Profitability Analysis
         description: Analyze profitability across jobs, cost codes, and projects.
 common:
+  - type: DomainSecurity
+    url: security/cmic-domain-security.yml
+  - type: Authentication
+    url: authentication/cmic-authentication.yml
   - type: OAuthScopes
     url: scopes/cmic-scopes.yml
   - type: LinkedIn

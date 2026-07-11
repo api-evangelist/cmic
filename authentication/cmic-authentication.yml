@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/cmic-construction-erp-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+    scopes: 1
+  description: OAuth 2.0 client credentials for CMiC API access
+  sources:
+  - openapi/cmic-construction-erp-openapi.yml
