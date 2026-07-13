@@ -3,12 +3,13 @@
   "feeds": [
     {
       "source": "https://cmicglobal.com/resources/",
-      "feed_url": "",
-      "saved": 1,
-      "method": "agent-scrape"
+      "feed_url": "https://cmicglobal.com/resources/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-06-27T12:33:16Z",
+  "fetched": "2026-07-11T11:50:51Z",
   "post_count": 2,
-  "agent_pulled": "2026-06-27"
+  "agent_pulled": "2026-07-04"
 }
