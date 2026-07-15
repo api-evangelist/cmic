@@ -105,6 +105,8 @@ apis:
       - name: Job Profitability Analysis
         description: Analyze profitability across jobs, cost codes, and projects.
 common:
+  - type: AgenticAccess
+    url: agentic-access/cmic-agentic-access.yml
   - type: DomainSecurity
     url: security/cmic-domain-security.yml
   - type: Authentication
