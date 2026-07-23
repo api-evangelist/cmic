@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: CMiC Construction ERP Cost Tracking Projects API
+  description: CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
+  version: 1.0.0
+  contact:
+    name: CMiC Developer Support
+    url: https://developers.cmicglobal.com/
+  license:
+    name: CMiC Privacy Policy
+    url: https://cmicglobal.com/privacy-policy
+servers:
+- url: https://api.cmic.ca/rest
+  description: CMiC REST API
+security:
+- oauth2: []
+tags:
+- name: Projects
+  description: Construction project management
+paths:
+  /pm-rest-api/v1/PMproject:
+    get:
+      operationId: listProjects
+      summary: List construction projects
+      description: Returns a list of construction projects accessible to the authenticated user, subject to company and project-level security rules.
+      tags:
+      - Projects
+      parameters:
+      - name: companyCode
+        in: query
+        description: Filter by company code
+        schema:
+          type: string
+      - name: projectStatus
+        in: query
+        description: Filter by project status
+        schema:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - COMPLETE
+          - BIDDING
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+          maximum: 500
+      - name: offset
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of projects
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProjectList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+    post:
+      operationId: createProject
+      summary: Create a new construction project
+      description: Creates a new project record in CMiC ERP.
+      tags:
+      - Projects
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '201':
+          description: Project created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /pm-rest-api/v1/PMproject/{projectId}:
+    get:
+      operationId: getProject
+      summary: Get project details
+      description: Returns detailed information for a single construction project.
+      tags:
+      - Projects
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: Unique project identifier
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Project details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateProject
+      summary: Update project details
+      description: Updates an existing project record.
+      tags:
+      - Projects
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProjectRequest'
+      responses:
+        '200':
+          description: Project updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ProjectSummary:
+      type: object
+      properties:
+        projectId:
+          type: string
+        projectName:
+          type: string
+        companyCode:
+          type: string
+        status:
+          type: string
+        contractAmount:
+          type: number
+          format: double
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectSummary'
+        total:
+          type: integer
+        offset:
+          type: integer
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+    Project:
+      allOf:
+      - $ref: '#/components/schemas/ProjectSummary'
+      - type: object
+        properties:
+          description:
+            type: string
+          projectManager:
+            type: string
+          owner:
+            type: string
+          startDate:
+            type: string
+            format: date
+          endDate:
+            type: string
+            format: date
+          address:
+            $ref: '#/components/schemas/Address'
+          originalBudget:
+            type: number
+            format: double
+          revisedBudget:
+            type: number
+            format: double
+          committedCosts:
+            type: number
+            format: double
+    ProjectRequest:
+      type: object
+      required:
+      - projectName
+      - companyCode
+      properties:
+        projectName:
+          type: string
+        companyCode:
+          type: string
+        description:
+          type: string
+        startDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        contractAmount:
+          type: number
+          format: double
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials for CMiC API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://cmic/.default: Full CMiC API access

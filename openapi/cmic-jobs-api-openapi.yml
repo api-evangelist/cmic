@@ -1,0 +1,141 @@
+openapi: 3.1.0
+info:
+  title: CMiC Construction ERP Cost Tracking Jobs API
+  description: CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
+  version: 1.0.0
+  contact:
+    name: CMiC Developer Support
+    url: https://developers.cmicglobal.com/
+  license:
+    name: CMiC Privacy Policy
+    url: https://cmicglobal.com/privacy-policy
+servers:
+- url: https://api.cmic.ca/rest
+  description: CMiC REST API
+security:
+- oauth2: []
+tags:
+- name: Jobs
+  description: Job and cost code tracking
+paths:
+  /jc-rest-api/v1/JCjob:
+    get:
+      operationId: listJobs
+      summary: List construction jobs
+      description: Returns all construction jobs (job cost records) accessible to the authenticated user. Jobs are the primary cost tracking unit in CMiC.
+      tags:
+      - Jobs
+      parameters:
+      - name: companyCode
+        in: query
+        schema:
+          type: string
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: jobStatus
+        in: query
+        schema:
+          type: string
+          enum:
+          - OPEN
+          - CLOSED
+          - COMPLETE
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 100
+      responses:
+        '200':
+          description: List of jobs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JobList'
+  /jc-rest-api/v1/JCjob/{jobId}:
+    get:
+      operationId: getJob
+      summary: Get job details
+      description: Returns detailed information for a single construction job including cost summary.
+      tags:
+      - Jobs
+      parameters:
+      - name: jobId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Job details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Job'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    JobSummary:
+      type: object
+      properties:
+        jobId:
+          type: string
+        jobName:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+        originalBudget:
+          type: number
+          format: double
+    Job:
+      allOf:
+      - $ref: '#/components/schemas/JobSummary'
+      - type: object
+        properties:
+          revisedBudget:
+            type: number
+          actualCost:
+            type: number
+          committedCost:
+            type: number
+          costToComplete:
+            type: number
+    JobList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/JobSummary'
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials for CMiC API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://cmic/.default: Full CMiC API access

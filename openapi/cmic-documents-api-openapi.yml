@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: CMiC Construction ERP Cost Tracking Documents API
+  description: CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
+  version: 1.0.0
+  contact:
+    name: CMiC Developer Support
+    url: https://developers.cmicglobal.com/
+  license:
+    name: CMiC Privacy Policy
+    url: https://cmicglobal.com/privacy-policy
+servers:
+- url: https://api.cmic.ca/rest
+  description: CMiC REST API
+security:
+- oauth2: []
+tags:
+- name: Documents
+  description: Document management and approvals
+paths:
+  /dm-rest-api/v1/DMdocument:
+    get:
+      operationId: listDocuments
+      summary: List project documents
+      description: Returns project documents including RFIs, submittals, change orders, and drawings.
+      tags:
+      - Documents
+      parameters:
+      - name: projectId
+        in: query
+        schema:
+          type: string
+      - name: documentType
+        in: query
+        schema:
+          type: string
+          enum:
+          - RFI
+          - SUBMITTAL
+          - CHANGE_ORDER
+          - DRAWING
+          - SPECIFICATION
+          - CONTRACT
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+components:
+  schemas:
+    Document:
+      type: object
+      properties:
+        documentId:
+          type: string
+        documentType:
+          type: string
+        subject:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+        createdDate:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+    DocumentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        total:
+          type: integer
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials for CMiC API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://cmic/.default: Full CMiC API access

@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: CMiC Construction ERP Cost Tracking API
+  description: CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
+  version: 1.0.0
+  contact:
+    name: CMiC Developer Support
+    url: https://developers.cmicglobal.com/
+  license:
+    name: CMiC Privacy Policy
+    url: https://cmicglobal.com/privacy-policy
+servers:
+- url: https://api.cmic.ca/rest
+  description: CMiC REST API
+security:
+- oauth2: []
+tags:
+- name: Cost Tracking
+  description: Job cost codes, budgets, and committed costs
+paths:
+  /jc-rest-api/v1/JCcostCode:
+    get:
+      operationId: listCostCodes
+      summary: List cost codes
+      description: Returns cost codes for jobs, enabling detailed cost tracking by category.
+      tags:
+      - Cost Tracking
+      parameters:
+      - name: jobId
+        in: query
+        description: Filter cost codes for a specific job
+        schema:
+          type: string
+      - name: costType
+        in: query
+        description: Filter by cost type
+        schema:
+          type: string
+          enum:
+          - LABOR
+          - MATERIAL
+          - EQUIPMENT
+          - SUBCONTRACT
+          - OVERHEAD
+      responses:
+        '200':
+          description: List of cost codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CostCodeList'
+components:
+  schemas:
+    CostCode:
+      type: object
+      properties:
+        costCodeId:
+          type: string
+        description:
+          type: string
+        jobId:
+          type: string
+        costType:
+          type: string
+          enum:
+          - LABOR
+          - MATERIAL
+          - EQUIPMENT
+          - SUBCONTRACT
+          - OVERHEAD
+        budget:
+          type: number
+        actual:
+          type: number
+        committed:
+          type: number
+        variance:
+          type: number
+    CostCodeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostCode'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: OAuth 2.0 client credentials for CMiC API access
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token
+          scopes:
+            api://cmic/.default: Full CMiC API access
