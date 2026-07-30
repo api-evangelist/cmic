@@ -8,6 +8,19 @@ tags:
   - Finance
   - Project Management
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
 access: 3rd-Party
 created: '2026-03-18'
@@ -19,91 +32,184 @@ description: >-
   BI connector for accessing project financials, job costing, subcontractor and vendor management, equipment tracking,
   and document management with application-level security applied across company, job, project, and employee scopes.
 apis:
-  - aid: cmic:cmic-api
-    name: CMiC Construction ERP API
-    tags:
-      - Construction
-      - ERP
-      - Finance
-      - OAuth2
-      - Project Management
-    image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
-    humanURL: https://developers.cmicglobal.com/
-    baseURL: https://api.cmic.ca
-    properties:
-      - url: https://developers.cmicglobal.com/docs/overview
-        type: Documentation
-      - url: https://developers.cmicglobal.com/v1/docs/authentication
-        type: Authentication
-      - url: https://developers.cmicglobal.com/docs/developer-api-account
-        type: GettingStarted
-      - url: >-
-          https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
-        type: Reference
-      - url: openapi/cmic-construction-erp-openapi.yml
-        type: OpenAPI
-      - url: json-schema/cmic-project-schema.json
-        type: JSONSchema
-      - url: json-ld/cmic-context.jsonld
-        type: JSONLDContext
-      - url: rules/cmic-rules.yml
-        type: SpectralRuleset
-    description: >-
-      CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses
-      OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs
-      enable access to project financials, subcontractor management, job costing, equipment tracking, and document
-      management. Application-level security is enforced across all endpoints respecting company, job, project, and
-      employee access rules.
-    x-features:
-      - name: Project Management
-        description: List, create, retrieve, and update construction projects.
-      - name: Job Cost Tracking
-        description: Track jobs, cost codes, budgets, and committed costs.
-      - name: Subcontractor and Vendor Management
-        description: List and manage vendors and subcontractors per company.
-      - name: Equipment Tracking
-        description: Track equipment, usage, and assignment.
-      - name: Document Management
-        description: List and retrieve project documents and approvals.
-      - name: OAuth 2.0 Authentication
-        description: Client credentials flow with Microsoft Azure / external IdP support.
-    x-useCases:
-      - name: Project Financials Dashboard
-        description: Surface project, job, and cost-code data in BI tools.
-      - name: Subcontractor Onboarding
-        description: Sync vendor and subcontractor records into procurement systems.
-      - name: Equipment Utilization
-        description: Drive equipment-utilization reporting and predictive maintenance.
-      - name: Document Workflow Automation
-        description: Push and pull project documents into external review workflows.
-  - aid: cmic:cmic-power-bi-connector
-    name: CMiC API Power BI Connector
-    tags:
-      - Analytics
-      - Business Intelligence
-      - Construction
-      - ERP
-      - Power BI
-    image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
-    humanURL: https://docs.cmicglobal.com/portal/Content/Home.htm
-    baseURL: https://api.cmic.ca
-    properties:
-      - url: https://docs.cmicglobal.com/portal/Content/Home.htm
-        type: Documentation
-    description: >-
-      CMiC's Power BI Connector allows users to connect Microsoft Power BI directly to CMiC ERP data through the CMiC
-      API, enabling business intelligence dashboards and reports for construction project financials, job costing, and
-      operational metrics.
-    x-features:
-      - name: Power BI Native
-        description: Native Power BI connector for CMiC ERP data.
-      - name: Pre-Modeled Datasets
-        description: Pre-modeled construction-financial datasets out of the box.
-    x-useCases:
-      - name: Executive Dashboards
-        description: Build executive dashboards on CMiC project and financial data.
-      - name: Job Profitability Analysis
-        description: Analyze profitability across jobs, cost codes, and projects.
+- aid: cmic:cmic-power-bi-connector
+  name: CMiC API Power BI Connector
+  tags:
+  - Analytics
+  - Business Intelligence
+  - Construction
+  - ERP
+  - Power BI
+  image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
+  humanURL: https://docs.cmicglobal.com/portal/Content/Home.htm
+  baseURL: https://api.cmic.ca
+  properties:
+  - url: https://docs.cmicglobal.com/portal/Content/Home.htm
+    type: Documentation
+  description: >-
+    CMiC's Power BI Connector allows users to connect Microsoft Power BI directly to CMiC ERP data through
+    the CMiC API, enabling business intelligence dashboards and reports for construction project financials,
+    job costing, and operational metrics.
+  x-features:
+  - name: Power BI Native
+    description: Native Power BI connector for CMiC ERP data.
+  - name: Pre-Modeled Datasets
+    description: Pre-modeled construction-financial datasets out of the box.
+  x-useCases:
+  - name: Executive Dashboards
+    description: Build executive dashboards on CMiC project and financial data.
+  - name: Job Profitability Analysis
+    description: Analyze profitability across jobs, cost codes, and projects.
+- aid: cmic:cmic-cost-tracking-api
+  name: CMiC Cost Tracking API
+  description: Job cost codes, budgets, and committed costs
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Cost Tracking
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-cost-tracking-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
+- aid: cmic:cmic-documents-api
+  name: CMiC Documents API
+  description: Document management and approvals
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-documents-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
+- aid: cmic:cmic-equipment-api
+  name: CMiC Equipment API
+  description: Equipment tracking and usage
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Equipment
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-equipment-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
+- aid: cmic:cmic-jobs-api
+  name: CMiC Jobs API
+  description: Job and cost code tracking
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
+- aid: cmic:cmic-projects-api
+  name: CMiC Projects API
+  description: Construction project management
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
+- aid: cmic:cmic-subcontractors-api
+  name: CMiC Subcontractors API
+  description: Subcontractor and vendor management
+  humanURL: https://developers.cmicglobal.com/
+  baseURL: https://api.cmic.ca
+  tags:
+  - Subcontractors
+  properties:
+  - type: OpenAPI
+    url: openapi/cmic-subcontractors-api-openapi.yml
+  - type: Documentation
+    url: https://developers.cmicglobal.com/docs/overview
+  - type: Authentication
+    url: https://developers.cmicglobal.com/v1/docs/authentication
+  - type: GettingStarted
+    url: https://developers.cmicglobal.com/docs/developer-api-account
+  - type: Reference
+    url: >-
+      https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm
+  - type: JSONSchema
+    url: json-schema/cmic-project-schema.json
+  - type: JSONLDContext
+    url: json-ld/cmic-context.jsonld
+  - type: SpectralRuleset
+    url: rules/cmic-rules.yml
 common:
   - type: AgenticAccess
     url: agentic-access/cmic-agentic-access.yml
