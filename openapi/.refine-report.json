@@ -1,0 +1,24 @@
+{
+  "provider": "cmic",
+  "sources": [
+    "cmic-cost-tracking-api-openapi.yml",
+    "cmic-documents-api-openapi.yml",
+    "cmic-equipment-api-openapi.yml",
+    "cmic-jobs-api-openapi.yml",
+    "cmic-projects-api-openapi.yml",
+    "cmic-subcontractors-api-openapi.yml"
+  ],
+  "outputs": [
+    "cmic-cost-tracking-api-openapi.yml",
+    "cmic-documents-api-openapi.yml",
+    "cmic-equipment-api-openapi.yml",
+    "cmic-jobs-api-openapi.yml",
+    "cmic-projects-api-openapi.yml",
+    "cmic-subcontractors-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
