@@ -223,7 +223,7 @@ common:
     url: https://www.linkedin.com/company/cmic
   - url: https://cmicglobal.com/
     type: Website
-  - url: openapi/cmic-construction-erp-openapi.yml
+  - url: openapi/_original/cmic-construction-erp-openapi.yml
     type: OpenAPI
   - url: json-schema/cmic-project-schema.json
     type: JSONSchema
