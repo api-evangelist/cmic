@@ -1,0 +1,153 @@
+{
+  "item": [
+    {
+      "id": "52e782d6-deda-469b-95ef-e76b7f6ab022",
+      "name": "Cost Tracking",
+      "description": {
+        "content": "Job cost codes, budgets, and committed costs",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "506912cb-f8f5-44b3-a10d-b6b521fd81ce",
+          "name": "List cost codes",
+          "request": {
+            "name": "List cost codes",
+            "description": {
+              "content": "Returns cost codes for jobs, enabling detailed cost tracking by category.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jc-rest-api",
+                "v1",
+                "JCcostCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "jobId",
+                  "value": "<string>",
+                  "description": "Filter cost codes for a specific job"
+                },
+                {
+                  "disabled": false,
+                  "key": "costType",
+                  "value": "<string>",
+                  "description": "Filter by cost type"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f99b8d94-c103-4a41-be3c-b2555e3890d7",
+              "name": "List of cost codes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jc-rest-api",
+                    "v1",
+                    "JCcostCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "jobId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "costType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"costCodeId\": \"string\",\n      \"description\": \"string\",\n      \"jobId\": \"string\",\n      \"costType\": \"OVERHEAD\",\n      \"budget\": 4069.743816359561,\n      \"actual\": 3252.024741683758,\n      \"committed\": 1529.1441446188958,\n      \"variance\": 1511.0050447595213\n    },\n    {\n      \"costCodeId\": \"string\",\n      \"description\": \"string\",\n      \"jobId\": \"string\",\n      \"costType\": \"LABOR\",\n      \"budget\": 6119.915000466398,\n      \"actual\": 5188.0893241452395,\n      \"committed\": 7048.008395226164,\n      \"variance\": 2247.894316257282\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cmic.ca/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api://cmic/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "988ff02e-7cf1-4f3c-96df-6ccc41f466b2",
+    "name": "CMiC Construction ERP Cost Tracking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

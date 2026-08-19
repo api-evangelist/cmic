@@ -1,0 +1,151 @@
+{
+  "item": [
+    {
+      "id": "ddd39e1f-a242-4eaa-813b-4177cfb01847",
+      "name": "Equipment",
+      "description": {
+        "content": "Equipment tracking and usage",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b24e4e6-bfa9-4ea9-b9cc-d598bc794372",
+          "name": "List equipment",
+          "request": {
+            "name": "List equipment",
+            "description": {
+              "content": "Returns all equipment records tracked in the CMiC system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "eq-rest-api",
+                "v1",
+                "EQequipment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3810e9e6-4458-4f6a-88c0-36a9619d9005",
+              "name": "List of equipment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "eq-rest-api",
+                    "v1",
+                    "EQequipment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 8453,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    },\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 8100,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    }\n  ],\n  \"total\": 3100\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cmic.ca/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api://cmic/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "69ff924a-e155-4275-9833-594ada055d81",
+    "name": "CMiC Construction ERP Cost Tracking Equipment API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

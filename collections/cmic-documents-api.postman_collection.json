@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "f7c09b95-c93e-427b-9445-0e2225bd9c74",
+      "name": "Documents",
+      "description": {
+        "content": "Document management and approvals",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d753585b-4034-4ca5-9186-4ab55366fcfe",
+          "name": "List project documents",
+          "request": {
+            "name": "List project documents",
+            "description": {
+              "content": "Returns project documents including RFIs, submittals, change orders, and drawings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dm-rest-api",
+                "v1",
+                "DMdocument"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "documentType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2459afda-6227-4bda-abf1-f0f250dcb171",
+              "name": "List of documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dm-rest-api",
+                    "v1",
+                    "DMdocument"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "documentType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"documentId\": \"string\",\n      \"documentType\": \"string\",\n      \"subject\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"2017-12-08\",\n      \"dueDate\": \"2023-08-10\"\n    },\n    {\n      \"documentId\": \"string\",\n      \"documentType\": \"string\",\n      \"subject\": \"string\",\n      \"projectId\": \"string\",\n      \"status\": \"string\",\n      \"createdDate\": \"1976-10-02\",\n      \"dueDate\": \"2021-09-05\"\n    }\n  ],\n  \"total\": 8683\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cmic.ca/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api://cmic/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "54483b17-39cd-414f-b2c7-4c503b278bd1",
+    "name": "CMiC Construction ERP Cost Tracking Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

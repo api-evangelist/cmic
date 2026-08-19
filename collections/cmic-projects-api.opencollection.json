@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "CMiC Construction ERP Cost Tracking Projects API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List construction projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by company code"
+              },
+              {
+                "name": "projectStatus",
+                "value": "",
+                "type": "query",
+                "description": "Filter by project status"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of construction projects accessible to the authenticated user, subject to company and project-level security rules."
+        },
+        {
+          "info": {
+            "name": "Create a new construction project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new project record in CMiC ERP."
+        },
+        {
+          "info": {
+            "name": "Get project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique project identifier"
+              }
+            ]
+          },
+          "docs": "Returns detailed information for a single construction project."
+        },
+        {
+          "info": {
+            "name": "Update project details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.cmic.ca/rest/pm-rest-api/v1/PMproject/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing project record."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

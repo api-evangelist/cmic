@@ -1,0 +1,251 @@
+{
+  "item": [
+    {
+      "id": "b0ddc307-1b5c-4752-a1b2-0c358081723b",
+      "name": "Subcontractors",
+      "description": {
+        "content": "Subcontractor and vendor management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c2646bb-d3b6-46e5-bf3a-2e023832342e",
+          "name": "List vendors and subcontractors",
+          "request": {
+            "name": "List vendors and subcontractors",
+            "description": {
+              "content": "Returns all vendors and subcontractors in the CMiC system.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ap-rest-api",
+                "v1",
+                "APvendor"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "vendorType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "100"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "55522078-afeb-4786-a0c7-2d69bd1646a0",
+              "name": "List of vendors",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ap-rest-api",
+                    "v1",
+                    "APvendor"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vendorType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "100"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"total\": 3128\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2e9ec56d-2532-456f-a18c-630c16ce045a",
+          "name": "Get vendor details",
+          "request": {
+            "name": "Get vendor details",
+            "description": {
+              "content": "Returns detailed information for a vendor or subcontractor.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ap-rest-api",
+                "v1",
+                "APvendor",
+                ":vendorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "vendorId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c97e32b2-ef22-4699-92ee-544e86ff6fd1",
+              "name": "Vendor details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ap-rest-api",
+                    "v1",
+                    "APvendor",
+                    ":vendorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "vendorId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"vendorId\": \"string\",\n  \"vendorName\": \"string\",\n  \"vendorType\": \"string\",\n  \"status\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"taxId\": \"string\",\n  \"insurance\": {\n    \"expiryDate\": \"1997-01-26\",\n    \"coverageAmount\": 4541.02199042367\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.cmic.ca/rest",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api://cmic/.default"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+      },
+      {
+        "key": "grant_type",
+        "value": "client_credentials"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "266485f3-916f-4c5b-93bb-895c941b5850",
+    "name": "CMiC Construction ERP Cost Tracking Subcontractors API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
