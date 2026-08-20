@@ -141,6 +141,8 @@ apis:
   humanURL: https://developers.cmicglobal.com/
   baseURL: https://api.cmic.ca
   tags:
+  - Job
+  tags_raw:
   - Jobs
   properties:
   - type: OpenAPI
@@ -166,6 +168,8 @@ apis:
   humanURL: https://developers.cmicglobal.com/
   baseURL: https://api.cmic.ca
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
