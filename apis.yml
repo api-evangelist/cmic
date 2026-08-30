@@ -32,7 +32,6 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
 access: 3rd-Party
 created: '2026-03-18'
 modified: '2026-05-19'
@@ -51,7 +50,6 @@ apis:
   - Construction
   - ERP
   - Power BI
-  image: https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/image.png
   humanURL: https://docs.cmicglobal.com/portal/Content/Home.htm
   baseURL: https://api.cmic.ca
   properties:
