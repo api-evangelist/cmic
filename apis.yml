@@ -226,6 +226,9 @@ apis:
   - type: SpectralRuleset
     url: rules/cmic-rules.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/cmic-capability-edges.yml
+    name: CMiC Business Capability Map
   - type: AgenticAccess
     url: agentic-access/cmic-agentic-access.yml
   - type: DomainSecurity

@@ -1,0 +1,24 @@
+slug: cmic
+provider: CMiC
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Infrastructure
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Equipment
+  spec_file: cmic-equipment-api-openapi.yml
+  capability_id: BC-5040.40
+  capability_id_l1: BC-5040
+  capability_name: Plant & Equipment Management
+  confidence: 0.7
+  evidence: 'GET /eq-rest-api/v1/EQequipment  listEquipment  List equipment; vendor: "equipment tracking"'
+  reason: Equipment module of a construction ERP tracks construction plant and equipment, matching Plant
+    & Equipment Management in field delivery.
