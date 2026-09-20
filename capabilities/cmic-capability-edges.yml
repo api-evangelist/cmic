@@ -11,8 +11,19 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 1
+edge_count: 2
 edges:
+- tag: Projects
+  spec_file: cmic-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.75
+  evidence: POST /pm-rest-api/v1/PMproject  createProject  Create a new construction project; PUT .../{projectId}  updateProject  Update
+    project details
+  reason: Full CRUD over construction project master records from the project management module realises
+    project execution/tracking; some ambiguity versus construction-specific sub-capabilities.
+  recovered_from: vertical-engineering-services-edges.json
 - tag: Equipment
   spec_file: cmic-equipment-api-openapi.yml
   capability_id: BC-5040.40
