@@ -1,12 +1,7 @@
 {
   "provider": "cmic",
   "sources": [
-    "cmic-cost-tracking-api-openapi.yml",
-    "cmic-documents-api-openapi.yml",
-    "cmic-equipment-api-openapi.yml",
-    "cmic-jobs-api-openapi.yml",
-    "cmic-projects-api-openapi.yml",
-    "cmic-subcontractors-api-openapi.yml"
+    "_original/cmic-construction-erp-openapi.yml"
   ],
   "outputs": [
     "cmic-cost-tracking-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "cmic-construction-erp-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "cmic-cost-tracking-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cmic-documents-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cmic-equipment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cmic-jobs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cmic-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "cmic-subcontractors-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

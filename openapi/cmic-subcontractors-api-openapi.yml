@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: CMiC Construction ERP Cost Tracking Subcontractors API
+  title: CMiC Construction ERP Subcontractors API
   description: CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
   version: 1.0.0
   contact:
@@ -68,15 +68,30 @@ paths:
                 $ref: '#/components/schemas/Vendor'
 components:
   schemas:
-    VendorList:
+    Address:
       type: object
       properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/VendorSummary'
-        total:
-          type: integer
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    VendorSummary:
+      type: object
+      properties:
+        vendorId:
+          type: string
+        vendorName:
+          type: string
+        vendorType:
+          type: string
+        status:
+          type: string
     Vendor:
       allOf:
       - $ref: '#/components/schemas/VendorSummary'
@@ -98,30 +113,15 @@ components:
                 format: date
               coverageAmount:
                 type: number
-    VendorSummary:
+    VendorList:
       type: object
       properties:
-        vendorId:
-          type: string
-        vendorName:
-          type: string
-        vendorType:
-          type: string
-        status:
-          type: string
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/VendorSummary'
+        total:
+          type: integer
   securitySchemes:
     oauth2:
       type: oauth2
