@@ -133,40 +133,19 @@ paths:
               schema:
                 $ref: '#/components/schemas/Project'
 components:
-  responses:
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
+    Address:
       type: object
       properties:
-        code:
+        street:
           type: string
-        message:
+        city:
           type: string
-        details:
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
           type: string
     ProjectList:
       type: object
@@ -179,6 +158,15 @@ components:
           type: integer
         offset:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     ProjectRequest:
       type: object
       required:
@@ -200,19 +188,6 @@ components:
         contractAmount:
           type: number
           format: double
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
     ProjectSummary:
       type: object
       properties:
@@ -255,6 +230,31 @@ components:
           committedCosts:
             type: number
             format: double
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

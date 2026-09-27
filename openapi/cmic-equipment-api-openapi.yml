@@ -49,15 +49,6 @@ paths:
                 $ref: '#/components/schemas/EquipmentList'
 components:
   schemas:
-    EquipmentList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Equipment'
-        total:
-          type: integer
     Equipment:
       type: object
       properties:
@@ -77,6 +68,15 @@ components:
           type: string
         assignedJobId:
           type: string
+    EquipmentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Equipment'
+        total:
+          type: integer
   securitySchemes:
     oauth2:
       type: oauth2
