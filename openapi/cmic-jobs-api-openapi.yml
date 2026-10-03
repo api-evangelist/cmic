@@ -78,6 +78,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+        details:
+          type: string
     JobList:
       type: object
       properties:
@@ -114,15 +123,6 @@ components:
         originalBudget:
           type: number
           format: double
-    Error:
-      type: object
-      properties:
-        code:
-          type: string
-        message:
-          type: string
-        details:
-          type: string
   responses:
     NotFound:
       description: Resource not found
