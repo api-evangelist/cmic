@@ -55,15 +55,6 @@ paths:
                 $ref: '#/components/schemas/DocumentList'
 components:
   schemas:
-    DocumentList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Document'
-        total:
-          type: integer
     Document:
       type: object
       properties:
@@ -83,6 +74,15 @@ components:
         dueDate:
           type: string
           format: date
+    DocumentList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Document'
+        total:
+          type: integer
   securitySchemes:
     oauth2:
       type: oauth2
