@@ -77,28 +77,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    JobSummary:
-      type: object
-      properties:
-        jobId:
-          type: string
-        jobName:
-          type: string
-        projectId:
-          type: string
-        status:
-          type: string
-        originalBudget:
-          type: number
-          format: double
     Error:
       type: object
       properties:
@@ -121,6 +100,20 @@ components:
             type: number
           costToComplete:
             type: number
+    JobSummary:
+      type: object
+      properties:
+        jobId:
+          type: string
+        jobName:
+          type: string
+        projectId:
+          type: string
+        status:
+          type: string
+        originalBudget:
+          type: number
+          format: double
     JobList:
       type: object
       properties:
@@ -130,6 +123,13 @@ components:
             $ref: '#/components/schemas/JobSummary'
         total:
           type: integer
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2

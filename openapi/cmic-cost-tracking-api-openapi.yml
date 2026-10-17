@@ -51,13 +51,6 @@ paths:
                 $ref: '#/components/schemas/CostCodeList'
 components:
   schemas:
-    CostCodeList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/CostCode'
     CostCode:
       type: object
       properties:
@@ -83,6 +76,13 @@ components:
           type: number
         variance:
           type: number
+    CostCodeList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CostCode'
   securitySchemes:
     oauth2:
       type: oauth2

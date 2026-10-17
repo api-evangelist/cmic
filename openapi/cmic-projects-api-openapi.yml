@@ -133,45 +133,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Project'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Forbidden:
-      description: Insufficient permissions
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    Unauthorized:
-      description: Authentication required
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Address:
-      type: object
-      properties:
-        street:
-          type: string
-        city:
-          type: string
-        state:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
     Error:
       type: object
       properties:
@@ -181,6 +143,31 @@ components:
           type: string
         details:
           type: string
+    ProjectSummary:
+      type: object
+      properties:
+        projectId:
+          type: string
+        projectName:
+          type: string
+        companyCode:
+          type: string
+        status:
+          type: string
+        contractAmount:
+          type: number
+          format: double
+    ProjectList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectSummary'
+        total:
+          type: integer
+        offset:
+          type: integer
     Project:
       allOf:
       - $ref: '#/components/schemas/ProjectSummary'
@@ -209,31 +196,6 @@ components:
           committedCosts:
             type: number
             format: double
-    ProjectList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectSummary'
-        total:
-          type: integer
-        offset:
-          type: integer
-    ProjectSummary:
-      type: object
-      properties:
-        projectId:
-          type: string
-        projectName:
-          type: string
-        companyCode:
-          type: string
-        status:
-          type: string
-        contractAmount:
-          type: number
-          format: double
     ProjectRequest:
       type: object
       required:
@@ -255,6 +217,44 @@ components:
         contractAmount:
           type: number
           format: double
+    Address:
+      type: object
+      properties:
+        street:
+          type: string
+        city:
+          type: string
+        state:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Authentication required
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Forbidden:
+      description: Insufficient permissions
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     oauth2:
       type: oauth2
