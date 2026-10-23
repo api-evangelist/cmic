@@ -224,6 +224,8 @@ apis:
   - type: SpectralRuleset
     url: rules/cmic-rules.yml
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/cmic/overview
   - type: Plans
     url: plans/cmic-plans-pricing.yml
   - type: RateLimits
