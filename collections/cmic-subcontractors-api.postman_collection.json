@@ -1,225 +1,239 @@
 {
+  "info": {
+    "_postman_id": "391fff38-86a0-4122-ae7d-09f184d4920d",
+    "name": "CMiC Construction ERP Subcontractors API",
+    "description": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:24:37.000Z",
+    "updatedAt": "2026-10-22T01:24:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-391fff38-86a0-4122-ae7d-09f184d4920d"
+  },
   "item": [
     {
-      "id": "b0ddc307-1b5c-4752-a1b2-0c358081723b",
-      "name": "Subcontractors",
-      "description": {
-        "content": "Subcontractor and vendor management",
-        "type": "text/plain"
-      },
+      "name": "ap-rest-api",
       "item": [
         {
-          "id": "5c2646bb-d3b6-46e5-bf3a-2e023832342e",
-          "name": "List vendors and subcontractors",
-          "request": {
-            "name": "List vendors and subcontractors",
-            "description": {
-              "content": "Returns all vendors and subcontractors in the CMiC system.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "ap-rest-api",
-                "v1",
-                "APvendor"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "vendorType",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "55522078-afeb-4786-a0c7-2d69bd1646a0",
-              "name": "List of vendors",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ap-rest-api",
-                    "v1",
-                    "APvendor"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+              "name": "APvendor",
+              "item": [
+                {
+                  "name": "{vendorId}",
+                  "item": [
                     {
-                      "key": "vendorType",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "limit",
-                      "value": "100"
+                      "name": "Get vendor details",
+                      "id": "8e325f06-6659-4e6a-8929-2dfae4822a1a",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ap-rest-api/v1/APvendor/:vendorId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ap-rest-api",
+                            "v1",
+                            "APvendor",
+                            ":vendorId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "45f26f7c-12ae-44bf-b18f-54a0526317c7",
+                              "key": "vendorId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns detailed information for a vendor or subcontractor."
+                      },
+                      "response": [
+                        {
+                          "id": "3d7a514c-2f9c-4c52-bd25-c1e2522154b4",
+                          "name": "Vendor details",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/ap-rest-api/v1/APvendor/:vendorId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "ap-rest-api",
+                                "v1",
+                                "APvendor",
+                                ":vendorId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "vendorId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"vendorId\": \"<string>\",\n  \"vendorName\": \"<string>\",\n  \"vendorType\": \"<string>\",\n  \"status\": \"<string>\",\n  \"address\": {\n    \"street\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phone\": \"<string>\",\n  \"email\": \"<string>\",\n  \"taxId\": \"<string>\",\n  \"insurance\": {\n    \"expiryDate\": \"<date>\",\n    \"coverageAmount\": \"<number>\"\n  }\n}",
+                          "createdAt": "2026-10-22T01:24:38.000Z",
+                          "updatedAt": "2026-10-22T01:24:38.000Z",
+                          "uid": "35240-3d7a514c-2f9c-4c52-bd25-c1e2522154b4"
+                        }
+                      ],
+                      "createdAt": "2026-10-22T01:24:38.000Z",
+                      "updatedAt": "2026-10-22T01:24:38.000Z",
+                      "uid": "35240-8e325f06-6659-4e6a-8929-2dfae4822a1a"
                     }
                   ],
-                  "variable": []
+                  "id": "5f7b158d-9568-48b8-b601-215bd72c3811",
+                  "createdAt": "2026-10-22T01:24:38.000Z",
+                  "updatedAt": "2026-10-22T01:24:38.000Z",
+                  "uid": "35240-5f7b158d-9568-48b8-b601-215bd72c3811"
                 },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
+                {
+                  "name": "List vendors and subcontractors",
+                  "id": "94537e2d-b053-4bb1-bc98-3a93fbfb9b66",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
                   },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    },\n    {\n      \"vendorId\": \"string\",\n      \"vendorName\": \"string\",\n      \"vendorType\": \"string\",\n      \"status\": \"string\"\n    }\n  ],\n  \"total\": 3128\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "2e9ec56d-2532-456f-a18c-630c16ce045a",
-          "name": "Get vendor details",
-          "request": {
-            "name": "Get vendor details",
-            "description": {
-              "content": "Returns detailed information for a vendor or subcontractor.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "ap-rest-api",
-                "v1",
-                "APvendor",
-                ":vendorId"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "vendorId",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "c97e32b2-ef22-4699-92ee-544e86ff6fd1",
-              "name": "Vendor details",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "ap-rest-api",
-                    "v1",
-                    "APvendor",
-                    ":vendorId"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/ap-rest-api/v1/APvendor?vendorType=SUBCONTRACTOR&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ap-rest-api",
+                        "v1",
+                        "APvendor"
+                      ],
+                      "query": [
+                        {
+                          "key": "vendorType",
+                          "value": "SUBCONTRACTOR"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
+                    },
+                    "description": "Returns all vendors and subcontractors in the CMiC system."
+                  },
+                  "response": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "vendorId",
-                      "description": "(Required) "
+                      "id": "c469a077-d5fa-4bbf-8b54-8a66e8cb57e8",
+                      "name": "List of vendors",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/ap-rest-api/v1/APvendor?vendorType=SUBCONTRACTOR&limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "ap-rest-api",
+                            "v1",
+                            "APvendor"
+                          ],
+                          "query": [
+                            {
+                              "key": "vendorType",
+                              "value": "SUBCONTRACTOR"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"vendorId\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorType\": \"<string>\",\n      \"status\": \"<string>\"\n    },\n    {\n      \"vendorId\": \"<string>\",\n      \"vendorName\": \"<string>\",\n      \"vendorType\": \"<string>\",\n      \"status\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:24:38.000Z",
+                      "updatedAt": "2026-10-22T01:24:38.000Z",
+                      "uid": "35240-c469a077-d5fa-4bbf-8b54-8a66e8cb57e8"
                     }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  ],
+                  "createdAt": "2026-10-22T01:24:38.000Z",
+                  "updatedAt": "2026-10-22T01:24:38.000Z",
+                  "uid": "35240-94537e2d-b053-4bb1-bc98-3a93fbfb9b66"
                 }
               ],
-              "body": "{\n  \"vendorId\": \"string\",\n  \"vendorName\": \"string\",\n  \"vendorType\": \"string\",\n  \"status\": \"string\",\n  \"address\": {\n    \"street\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\"\n  },\n  \"phone\": \"string\",\n  \"email\": \"string\",\n  \"taxId\": \"string\",\n  \"insurance\": {\n    \"expiryDate\": \"1997-01-26\",\n    \"coverageAmount\": 4541.02199042367\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "1d692e1d-05d6-4c48-9aec-5cf1e0739790",
+              "createdAt": "2026-10-22T01:24:38.000Z",
+              "updatedAt": "2026-10-22T01:24:38.000Z",
+              "uid": "35240-1d692e1d-05d6-4c48-9aec-5cf1e0739790"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "64f9b98a-4e60-4130-b6f3-f553e65520e9",
+          "createdAt": "2026-10-22T01:24:38.000Z",
+          "updatedAt": "2026-10-22T01:24:38.000Z",
+          "uid": "35240-64f9b98a-4e60-4130-b6f3-f553e65520e9"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.cmic.ca/rest",
-      "key": "baseUrl"
+      "id": "856aa52b-fc9a-4818-bbc2-b3d6230095e0",
+      "createdAt": "2026-10-22T01:24:38.000Z",
+      "updatedAt": "2026-10-22T01:24:38.000Z",
+      "uid": "35240-856aa52b-fc9a-4818-bbc2-b3d6230095e0"
     }
   ],
   "auth": {
@@ -227,25 +241,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "api://cmic/.default"
+        "value": "api://cmic/.default",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "266485f3-916f-4c5b-93bb-895c941b5850",
-    "name": "CMiC Construction ERP Cost Tracking Subcontractors API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cmic.ca/rest"
     }
-  }
+  ]
 }

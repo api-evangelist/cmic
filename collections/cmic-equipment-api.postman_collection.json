@@ -1,125 +1,138 @@
 {
+  "info": {
+    "_postman_id": "cf085f4e-d144-43d1-bbe1-452636b4aae0",
+    "name": "CMiC Construction ERP Equipment API",
+    "description": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-22T01:24:19.000Z",
+    "updatedAt": "2026-10-22T01:24:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cf085f4e-d144-43d1-bbe1-452636b4aae0"
+  },
   "item": [
     {
-      "id": "ddd39e1f-a242-4eaa-813b-4177cfb01847",
-      "name": "Equipment",
-      "description": {
-        "content": "Equipment tracking and usage",
-        "type": "text/plain"
-      },
+      "name": "eq-rest-api",
       "item": [
         {
-          "id": "9b24e4e6-bfa9-4ea9-b9cc-d598bc794372",
-          "name": "List equipment",
-          "request": {
-            "name": "List equipment",
-            "description": {
-              "content": "Returns all equipment records tracked in the CMiC system.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "eq-rest-api",
-                "v1",
-                "EQequipment"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "status",
-                  "value": "<string>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit",
-                  "value": "100"
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "v1",
+          "item": [
             {
-              "id": "3810e9e6-4458-4f6a-88c0-36a9619d9005",
-              "name": "List of equipment",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "eq-rest-api",
-                    "v1",
-                    "EQequipment"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "status",
-                      "value": "<string>"
+              "name": "EQequipment",
+              "item": [
+                {
+                  "name": "List equipment",
+                  "id": "01ab59ec-b582-4794-b1e8-297e4ba3b1a1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/eq-rest-api/v1/EQequipment?status=MAINTENANCE&limit=100",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "eq-rest-api",
+                        "v1",
+                        "EQequipment"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "MAINTENANCE"
+                        },
+                        {
+                          "key": "limit",
+                          "value": "100"
+                        }
+                      ]
                     },
+                    "description": "Returns all equipment records tracked in the CMiC system."
+                  },
+                  "response": [
                     {
-                      "key": "limit",
-                      "value": "100"
+                      "id": "a6dd5edb-7ca0-4269-b9e1-daf609140ed2",
+                      "name": "List of equipment",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/eq-rest-api/v1/EQequipment?status=MAINTENANCE&limit=100",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "eq-rest-api",
+                            "v1",
+                            "EQequipment"
+                          ],
+                          "query": [
+                            {
+                              "key": "status",
+                              "value": "MAINTENANCE"
+                            },
+                            {
+                              "key": "limit",
+                              "value": "100"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"data\": [\n    {\n      \"equipmentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"equipmentType\": \"<string>\",\n      \"status\": \"<string>\",\n      \"year\": \"<integer>\",\n      \"make\": \"<string>\",\n      \"model\": \"<string>\",\n      \"assignedJobId\": \"<string>\"\n    },\n    {\n      \"equipmentId\": \"<string>\",\n      \"description\": \"<string>\",\n      \"equipmentType\": \"<string>\",\n      \"status\": \"<string>\",\n      \"year\": \"<integer>\",\n      \"make\": \"<string>\",\n      \"model\": \"<string>\",\n      \"assignedJobId\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                      "createdAt": "2026-10-22T01:24:19.000Z",
+                      "updatedAt": "2026-10-22T01:24:19.000Z",
+                      "uid": "35240-a6dd5edb-7ca0-4269-b9e1-daf609140ed2"
                     }
                   ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
+                  "createdAt": "2026-10-22T01:24:19.000Z",
+                  "updatedAt": "2026-10-22T01:24:19.000Z",
+                  "uid": "35240-01ab59ec-b582-4794-b1e8-297e4ba3b1a1"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 8453,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    },\n    {\n      \"equipmentId\": \"string\",\n      \"description\": \"string\",\n      \"equipmentType\": \"string\",\n      \"status\": \"string\",\n      \"year\": 8100,\n      \"make\": \"string\",\n      \"model\": \"string\",\n      \"assignedJobId\": \"string\"\n    }\n  ],\n  \"total\": 3100\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "id": "b768f6d7-142e-4d1c-afba-9fa1e49e99c0",
+              "createdAt": "2026-10-22T01:24:19.000Z",
+              "updatedAt": "2026-10-22T01:24:19.000Z",
+              "uid": "35240-b768f6d7-142e-4d1c-afba-9fa1e49e99c0"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "id": "078de76e-27be-4aa1-b0a9-b94f16262073",
+          "createdAt": "2026-10-22T01:24:19.000Z",
+          "updatedAt": "2026-10-22T01:24:19.000Z",
+          "uid": "35240-078de76e-27be-4aa1-b0a9-b94f16262073"
         }
       ],
-      "event": []
-    }
-  ],
-  "event": [],
-  "variable": [
-    {
-      "type": "string",
-      "value": "https://api.cmic.ca/rest",
-      "key": "baseUrl"
+      "id": "b66aaf45-8e5d-4d78-8695-22b134755e5a",
+      "createdAt": "2026-10-22T01:24:19.000Z",
+      "updatedAt": "2026-10-22T01:24:19.000Z",
+      "uid": "35240-b66aaf45-8e5d-4d78-8695-22b134755e5a"
     }
   ],
   "auth": {
@@ -127,25 +140,25 @@
     "oauth2": [
       {
         "key": "scope",
-        "value": "api://cmic/.default"
+        "value": "api://cmic/.default",
+        "type": "string"
       },
       {
         "key": "accessTokenUrl",
-        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token"
+        "value": "https://login.microsoftonline.com/{tenantId}/oauth2/v2.0/token",
+        "type": "string"
       },
       {
         "key": "grant_type",
-        "value": "client_credentials"
+        "value": "client_credentials",
+        "type": "string"
       }
     ]
   },
-  "info": {
-    "_postman_id": "69ff924a-e155-4275-9833-594ada055d81",
-    "name": "CMiC Construction ERP Cost Tracking Equipment API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.\n\nContact Support:\n Name: CMiC Developer Support",
-      "type": "text/plain"
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.cmic.ca/rest"
     }
-  }
+  ]
 }
