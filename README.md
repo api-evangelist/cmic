@@ -1,4 +1,4 @@
-# CMiC (cmic)
+# CMiC
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,93 +66,153 @@
 
 CMiC is a unified construction-industry ERP and project management platform used by general contractors, civil contractors, and heavy/highway builders. CMiC exposes an OAuth 2.0 secured REST API (api.cmic.ca) along with a Power BI connector for accessing project financials, job costing, subcontractor and vendor management, equipment tracking, and document management with application-level security applied across company, job, project, and employee scopes.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/cmic/refs/heads/main/apis.yml)
+**Areas:** Construction · ERP · Finance · Project Management
 
-## Scope
+## CMiC on APIs.io
 
-- **Type:** Index
-- **Access:** 3rd-Party
+Everything profiled for CMiC is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/cmic/](https://apis.io/providers/cmic/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (7)
 
-- Construction
-- ERP
-- Finance
-- Project Management
+- [CMiC API Power BI Connector](https://apis.io/apis/cmic/cmic-power-bi-connector/) — CMiC's Power BI Connector allows users to connect Microsoft Power BI directly to CMiC ERP data through the CMiC API, enabling business intelligence…
+- [CMiC Cost Tracking API](https://apis.io/apis/cmic/cmic-cost-tracking-api/) — Job cost codes, budgets, and committed costs
+- [CMiC Documents API](https://apis.io/apis/cmic/cmic-documents-api/) — Document management and approvals
+- [CMiC Equipment API](https://apis.io/apis/cmic/cmic-equipment-api/) — Equipment tracking and usage
+- [CMiC Jobs API](https://apis.io/apis/cmic/cmic-jobs-api/) — Job and cost code tracking
+- [CMiC Projects API](https://apis.io/apis/cmic/cmic-projects-api/) — Construction project management
+- [CMiC Subcontractors API](https://apis.io/apis/cmic/cmic-subcontractors-api/) — Subcontractor and vendor management
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-18
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### CMiC Construction ERP API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-CMiC provides enterprise ERP and project management software for the construction industry. The REST API uses OAuth 2.0 (client credentials flow) with support for third-party identity providers like Microsoft Azure. APIs enable access to project financials, subcontractor management, job costing, equipment tracking, and document management. Application-level security is enforced across all endpoints respecting company, job, project, and employee access rules.
+- [Cmic Agentic Access](https://apis.io/agentic-access/cmic/cmic-agentic-access/)
 
-- **Human URL:** [https://developers.cmicglobal.com/](https://developers.cmicglobal.com/)
-- **Base URL:** `https://api.cmic.ca`
+#### JSON Schema (1)
 
-#### Tags
+The data models the API reads and writes.
 
-- Construction
-- ERP
-- Finance
-- OAuth2
-- Project Management
+- [CMiC Construction Project](https://apis.io/schemas/cmic/cmic-project/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://developers.cmicglobal.com/docs/overview)
-- [Authentication](https://developers.cmicglobal.com/v1/docs/authentication)
-- [Getting Started](https://developers.cmicglobal.com/docs/developer-api-account)
-- [Reference](https://docs.cmicglobal.com/portal/Content/E_Reference_Material/CMiC_API/Reference/API_and_OAuth2/API_and_OAuth2.htm)
-- [OpenAPI](openapi/cmic-construction-erp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/cmic-construction-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cmic-construction-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/cmic-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/cmic-context.jsonld)
-- [Spectral Ruleset](rules/cmic-rules.yml)
+Linked-data contexts for the provider's vocabulary.
 
-### CMiC API Power BI Connector
+- [Cmic Context](https://apis.io/jsonld/cmic/cmic-context/)
 
-CMiC's Power BI Connector allows users to connect Microsoft Power BI directly to CMiC ERP data through the CMiC API, enabling business intelligence dashboards and reports for construction project financials, job costing, and operational metrics.
+#### Collections (7)
 
-- **Human URL:** [https://docs.cmicglobal.com/portal/Content/Home.htm](https://docs.cmicglobal.com/portal/Content/Home.htm)
-- **Base URL:** `https://api.cmic.ca`
+Postman and Open Collection request collections.
 
-#### Tags
+- [CMiC Construction ERP API](https://apis.io/collections/cmic/open-cmic-construction-erp/)
+- [CMiC Construction ERP Cost Tracking API](https://apis.io/collections/cmic/open-cmic-cost-tracking-api/)
+- [CMiC Construction ERP Cost Tracking Documents API](https://apis.io/collections/cmic/open-cmic-documents-api/)
+- [CMiC Construction ERP Cost Tracking Equipment API](https://apis.io/collections/cmic/open-cmic-equipment-api/)
+- [CMiC Construction ERP Cost Tracking Jobs API](https://apis.io/collections/cmic/open-cmic-jobs-api/)
+- [CMiC Construction ERP Cost Tracking Projects API](https://apis.io/collections/cmic/open-cmic-projects-api/)
+- [CMiC Construction ERP Cost Tracking Subcontractors API](https://apis.io/collections/cmic/open-cmic-subcontractors-api/)
 
-- Analytics
-- Business Intelligence
-- Construction
-- ERP
-- Power BI
+#### Governance rules (2)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://docs.cmicglobal.com/portal/Content/Home.htm)
-- [Postman Collection](collections/cmic-construction-erp.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/cmic-construction-erp.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [CMiC — jsonschema rules](https://apis.io/rules/cmic/cmic-jsonschema-spectral-rules/)
+- [CMiC API Rules](https://apis.io/rules/cmic/cmic-rules/)
 
-## Common Properties
+#### Security (2)
 
-- [LinkedIn](https://www.linkedin.com/company/cmic)
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Cmic Authentication](https://apis.io/security/cmic/cmic-authentication/)
+- [Cmic Domain Security](https://apis.io/security/cmic/cmic-domain-security/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Cmic Scopes](https://apis.io/scopes/cmic/cmic-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Cmic Plans Pricing](https://apis.io/plans/cmic/cmic-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Cmic Rate Limits](https://apis.io/rate-limits/cmic/cmic-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Cmic Finops](https://apis.io/finops/cmic/cmic-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://cmicglobal.com/)
-- [OpenAPI](openapi/cmic-construction-erp-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [JSON Schema](json-schema/cmic-project-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [J S O N L D Context](json-ld/cmic-context.jsonld)
-- [Spectral Ruleset](rules/cmic-rules.yml)
-- [Portal](https://developers.cmicglobal.com/)
 - [Documentation](https://docs.cmicglobal.com/portal/Content/Home.htm)
-- [Authentication](https://developers.cmicglobal.com/v1/docs/authentication)
-- [Getting Started](https://developers.cmicglobal.com/docs/developer-api-account)
-- [Integrations](https://cmicglobal.com/integrations/api-bundles/)
-- [Privacy Policy](https://cmicglobal.com/privacy-policy)
+- [Getting started](https://developers.cmicglobal.com/docs/developer-api-account)
 - [Blog](https://cmicglobal.com/resources/)
+- [Privacy policy](https://cmicglobal.com/privacy-policy)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 38.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 53.6 |
+| Contract quality | 58.2 |
+| Contract governance | 13.6 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 52.4 |
+| Access clarity | 18.4 |
+
+**Agent readiness 20.8** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/cmic/](https://apis.io/providers/cmic/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for CMiC: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/cmic/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
